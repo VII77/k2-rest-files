@@ -1,0 +1,266 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Ulrichs component workflow",
+        "description": "",
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/api/v1/workflow/published",
+    "x-ntx-object-variable-support": false,
+    "host": "npp-ulrich.workflowcloud.com",
+    "paths": {
+        "/1895c887-b86e-41b2-9984-c84114d4bd48/instances": {
+            "post": {
+                "summary": "Ulrichs component workflow",
+                "description": "Starts workflow: Ulrichs component workflow",
+                "operationId": "start1895c887-b86e-41b2-9984-c84114d4bd48",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "API Parameters",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "startData": {
+                                    "type": "object",
+                                    "properties": {
+                                        "se_ulrichstestvariable": {
+                                            "title": "UlrichsTestVariable",
+                                            "description": "",
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "options": {
+                                    "type": "object",
+                                    "properties": {
+                                        "callbackUrl": {
+                                            "title": "Callback URL on completion",
+                                            "description": "A Url to return the results back (https urls only)",
+                                            "type": "string"
+                                        },
+                                        "instanceToken": {
+                                            "title": "Instance Token",
+                                            "description": "An instance token handle obtained by invoking instances/create call. This token is used when files have to be uploaded as part of the workflow start variables.",
+                                            "type": "string",
+                                            "x-ms-visibility": "internal"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "required": true,
+                        "type": "string",
+                        "in": "query",
+                        "minLength": 1,
+                        "default": "BnJjjVEsZfDemblz7d3kV9yXo9LtxbYb7tkNE3DzQelsGRUtCtjg5OH1sVcGNwltU8zcmM",
+                        "x-ntx-initial": "BnJjjVEsZfDemblz7d3kV9yXo9LtxbYb7tkNE3DzQelsGRUtCtjg5OH1sVcGNwltU8zcmM",
+                        "description": "A security token to start the workflow",
+                        "x-ntx-summary": "Token"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "x-ntx-callback-schema": {
+                            "type": "object",
+                            "properties": {
+                                "returnData": {
+                                    "type": "object",
+                                    "properties": {
+                                        "se_ulrichstestvariable": {
+                                            "title": "UlrichsTestVariable",
+                                            "description": "",
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "workflow": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "410": {
+                        "description": "Gone"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "503": {
+                        "description": "Service Unavailable - Overloaded"
+                    },
+                    "default": {
+                        "description": "Unexpected Error"
+                    }
+                }
+            }
+        },
+        "/1895c887-b86e-41b2-9984-c84114d4bd48/instances/create": {
+            "post": {
+                "summary": "Ulrichs component workflow",
+                "description": "Creates an instance of workflow: Ulrichs component workflow & returns an instance token, that should be used for uploading files and/or starting the workflow instance.",
+                "operationId": "create1895c887-b86e-41b2-9984-c84114d4bd48",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "required": true,
+                        "type": "string",
+                        "in": "query",
+                        "default": "BnJjjVEsZfDemblz7d3kV9yXo9LtxbYb7tkNE3DzQelsGRUtCtjg5OH1sVcGNwltU8zcmM",
+                        "minLength": 1,
+                        "x-ntx-initial": "BnJjjVEsZfDemblz7d3kV9yXo9LtxbYb7tkNE3DzQelsGRUtCtjg5OH1sVcGNwltU8zcmM",
+                        "description": "A security token to create the workflow instance",
+                        "x-ntx-summary": "Token"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "410": {
+                        "description": "Gone"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "503": {
+                        "description": "Service Unavailable - Overloaded"
+                    },
+                    "default": {
+                        "description": "Unexpected Error"
+                    }
+                },
+                "x-ms-visibility": "internal"
+            }
+        },
+        "/1895c887-b86e-41b2-9984-c84114d4bd48/instances/uploads": {
+            "post": {
+                "summary": "Ulrichs component workflow",
+                "description": "Uploads a file for use by an instance of workflow: Ulrichs component workflow",
+                "operationId": "upload1895c887-b86e-41b2-9984-c84114d4bd48",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Transfer-Encoding",
+                        "required": true,
+                        "type": "string",
+                        "in": "header",
+                        "enum": [
+                            "chunked"
+                        ],
+                        "default": "chunked",
+                        "description": "Only accepts Chunked Transfer Encoding"
+                    },
+                    {
+                        "name": "File",
+                        "required": true,
+                        "type": "file",
+                        "in": "formData",
+                        "description": "The file part of the multipart request for file upload. You can upload only one file at a time."
+                    },
+                    {
+                        "name": "File-Name",
+                        "required": true,
+                        "type": "string",
+                        "in": "formData",
+                        "description": "A name for the file being uploaded. If not provided, defaults to File's filename."
+                    },
+                    {
+                        "name": "Instance-Token",
+                        "required": true,
+                        "type": "string",
+                        "in": "formData",
+                        "description": "Instance token from the instances/create call."
+                    },
+                    {
+                        "name": "token",
+                        "required": true,
+                        "type": "string",
+                        "in": "query",
+                        "default": "BnJjjVEsZfDemblz7d3kV9yXo9LtxbYb7tkNE3DzQelsGRUtCtjg5OH1sVcGNwltU8zcmM",
+                        "minLength": 1,
+                        "x-ntx-initial": "BnJjjVEsZfDemblz7d3kV9yXo9LtxbYb7tkNE3DzQelsGRUtCtjg5OH1sVcGNwltU8zcmM",
+                        "description": "A security token",
+                        "x-ntx-summary": "Token"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "description": "File reference",
+                            "format": "x-ntx-file-reference",
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "410": {
+                        "description": "Gone"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "503": {
+                        "description": "Service Unavailable - Overloaded"
+                    },
+                    "default": {
+                        "description": "Unexpected Error"
+                    }
+                },
+                "x-ms-visibility": "internal"
+            }
+        }
+    }
+}
